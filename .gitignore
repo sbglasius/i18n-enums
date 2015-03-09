@@ -1,0 +1,4 @@
+atlassian-ide-plugin.xml
+*.i?
+.gradle/
+.idea
