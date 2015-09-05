@@ -1,9 +1,7 @@
-package grails.plugin.i18nEnums.traits
+package grails.plugins.i18nenums.traits
 
-import grails.plugin.i18nEnums.DefaultNameCase
+import grails.plugins.i18nenums.DefaultNameCase
 import grails.util.Holders
-import groovy.transform.CompileDynamic
-import groovy.transform.CompileStatic
 import groovy.transform.SelfType
 import org.springframework.context.MessageSourceResolvable
 

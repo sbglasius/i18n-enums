@@ -70,3 +70,9 @@ dependencies {
 task wrapper(type: Wrapper) {
     gradleVersion = gradleWrapperVersion
 }
+
+bintray {
+    user = "${bintray.user}"
+    key = "${bintray.key}"
+
+}

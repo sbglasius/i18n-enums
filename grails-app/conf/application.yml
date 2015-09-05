@@ -2,7 +2,7 @@
 grails:
   profile: web-plugin
   codegen:
-    defaultPackage: grails.plugin.i18nEnums
+    defaultPackage: grails.plugin.i18nenums
 info:
     app:
         name: '@info.app.name@'

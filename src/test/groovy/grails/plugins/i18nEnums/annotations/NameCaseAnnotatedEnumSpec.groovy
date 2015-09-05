@@ -1,4 +1,4 @@
-package grails.plugin.i18nEnums.annotations
+package grails.plugins.i18nenums.annotations
 
 import spock.lang.Unroll
 
@@ -6,8 +6,8 @@ class NameCaseAnnotatedEnumSpec extends AnnotationSpecification {
 
 	def source = '''
 				package test
-				import grails.plugin.i18nEnums.annotations.I18nEnum
-				import grails.plugin.i18nEnums.DefaultNameCase
+				import grails.plugins.i18nenums.annotations.I18nEnum
+				import grails.plugins.i18nenums.DefaultNameCase
 
 				@I18nEnum(defaultNameCase = DefaultNameCase.${nameCase})
 				enum NameCasedAnnotatedEnum {

@@ -1,11 +1,11 @@
-package grails.plugin.i18nEnums.annotations
+package grails.plugins.i18nenums.annotations
 import org.springframework.context.MessageSourceResolvable
 
 class DefaultAnnotatedEnumSpec extends AnnotationSpecification {
 
 	def source = """
 				package test
-				import grails.plugin.i18nEnums.annotations.I18nEnum
+				import grails.plugins.i18nenums.annotations.I18nEnum
 
 				@I18nEnum
 				enum DefaultAnnotatedEnum {

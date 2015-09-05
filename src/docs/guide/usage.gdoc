@@ -6,7 +6,7 @@ You can either implement the trait I18nEnumTrait on your enumeration like this (
 
 {code}
 package test
-import grails.plugin.i18nEnums.traits.I18nEnumTrait
+import I18nEnumTrait
 
 enum MyEnum implements I18nEnumTrait {
     ONE, Two, three
@@ -17,7 +17,7 @@ or you can annotate your enumeration with @I18nEnum (also works for Grails 2.x)
 
 {code}
 package test
-import grails.plugin.i18nEnums.annotations.I18nEnum
+import I18nEnum
 
 @I18nEnum
 enum MyEnum {
@@ -64,7 +64,7 @@ Postfix controls what is added after the ENUM_VALUE. If you do not add a dot bef
 h4. Example:
 {code}
 package test
-import grails.plugin.i18nEnums.annotations.I18nEnum
+import I18nEnum
 
 @I18nEnum(prefix = 'enum', postfix = 'label')
 enum MyEnum {
@@ -85,7 +85,7 @@ If you do not want the package name in the generated codes, just add shortName =
 h4. Example:
 {code}
 package test
-import grails.plugin.i18nEnums.annotations.I18nEnum
+import I18nEnum
 
 @I18nEnum(shortName = true)
 enum MyEnum {
@@ -113,7 +113,7 @@ h4. Example:
 h5. DefaultNameCase.CAPITALIZE
 {code}
 package test
-import grails.plugin.i18nEnums.annotations.I18nEnum
+import I18nEnum
 
 @I18nEnum(defaultNameCase = DefaultNameCase.CAPITALIZE)
 enum MyEnum {
@@ -131,7 +131,7 @@ test.MyEnum.three.defaultMessage == 'Three'
 h5. DefaultNameCase.ALL_CAPS
 {code}
 package test
-import grails.plugin.i18nEnums.annotations.I18nEnum
+import I18nEnum
 
 @I18nEnum(defaultNameCase = DefaultNameCase.ALL_CAPS)
 enum MyEnum {
@@ -150,7 +150,7 @@ test.MyEnum.Four_five.defaultMessage == 'Four Five'
 h5. DefaultNameCase.LOWER_CASE
 {code}
 package test
-import grails.plugin.i18nEnums.annotations.I18nEnum
+import I18nEnum
 
 @I18nEnum(defaultNameCase = DefaultNameCase.LOWER_CASE)
 enum MyEnum {

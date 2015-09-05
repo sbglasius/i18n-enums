@@ -1,4 +1,4 @@
-package grails.plugin.i18nEnums.annotations
+package grails.plugins.i18nenums.annotations
 
 import groovy.text.GStringTemplateEngine
 import groovy.text.TemplateEngine

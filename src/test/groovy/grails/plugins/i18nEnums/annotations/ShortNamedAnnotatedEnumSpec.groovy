@@ -1,11 +1,11 @@
-package grails.plugin.i18nEnums.annotations
+package grails.plugins.i18nenums.annotations
 
 class ShortNamedAnnotatedEnumSpec extends AnnotationSpecification {
 
 	def source = """
 				package test
-				import grails.plugin.i18nEnums.annotations.I18nEnum
-				import grails.plugin.i18nEnums.DefaultNameCase
+				import grails.plugins.i18nenums.annotations.I18nEnum
+				import grails.plugins.i18nenums.DefaultNameCase
 
 				@I18nEnum(shortName = true)
 				enum ShortNamedAnnotatedEnum {

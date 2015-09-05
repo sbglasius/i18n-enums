@@ -1,5 +1,5 @@
-package grails.plugin.i18nEnums.annotations
-import grails.plugin.i18nEnums.DefaultNameCase
+package grails.plugins.i18nenums.annotations
+import grails.plugins.i18nenums.DefaultNameCase
 import grails.util.Holders
 import org.grails.config.PropertySourcesConfig
 
@@ -7,8 +7,8 @@ class GrailsConfigOverrideAnnotatedEnumSpec extends AnnotationSpecification {
 
     def source = """
 				package test
-				import grails.plugin.i18nEnums.annotations.I18nEnum
-                import grails.plugin.i18nEnums.DefaultNameCase
+				import grails.plugins.i18nenums.annotations.I18nEnum
+                import grails.plugins.i18nenums.DefaultNameCase
 
 				@I18nEnum(prefix = 'overridepre', postfix = 'overridepost', shortName = false, defaultNameCase = DefaultNameCase.UPPER_CASE)
 				enum DefaultAnnotatedEnum {
