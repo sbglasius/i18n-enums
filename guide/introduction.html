@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>1 Introduction 2.0-SNAPSHOT</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
+    <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
+    <script type="text/javascript">
+function addJsClass() {
+    var classes = document.body.className.split(" ");
+    classes.push("js");
+    document.body.className = classes.join(" ");
+}
+    </script>
+</head>
+
+<body class="body" onload="addJsClass();">
+<div id="navigation">
+    <ul>
+        <li>
+            <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
+                <a href="../guide/index.html" class="button">Table of contents</a>
+
+                <div id="nav-summary-childs" style="display:none;">
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/introduction.html"><strong>1</strong><span>Introduction</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/installation.html"><strong>2</strong><span>Installation</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/usage.html"><strong>3</strong><span>Usage</span></a>
+                    </div>
+                    
+                </div>
+            </div>
+        </li>
+        <li class="separator selected">
+            <a id="ref-button" onclick="localToggle(); return false;" href="#">Quick Reference</a>
+        </li>
+    </ul>
+</div>
+<div id="header">
+    <div class="images clearfix">
+        
+        
+    </div>
+    <p>Keep your Enums DRY</p>
+</div>
+
+
+<table id="colset" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td id="col1">
+            <div id="main" class="corner-all">
+
+                
+
+                <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
+
+                
+                    <div class="toc-item next-right"><a href="../guide/installation.html"><strong>2</strong><span>Installation</span> >></a></div>
+                
+
+
+                <div class="project">
+                    <h1>1 Introduction - Reference Documentation</h1>
+
+                    <p><strong>Authors:</strong> Søren Berg Glasius</p>
+
+                    <p><strong>Version:</strong> 2.0-SNAPSHOT</p>
+
+                    
+                </div>
+
+                
+
+                
+
+<h1 id="introduction">1 Introduction</h1>
+This plugin adds an annotation on Enums to easy add and implement the MessageSourceResolvable interface. It was heavily
+inspired by this blog-entry by <a href="http://adhockery.blogspot.dk/2009/03/internationalizing-domain-classes-and.html" target="blank">Rob Fletcher</a><p class="paragraph"/><h2>If you use it, let me know</h2><p class="paragraph"/>If you use this plugin in your application, let me know - it's always nice to know, when ones work is used in the wild.
+Send me a tweet (<strong class="bold">&#64;sbglasius</strong>) or an email (<strong class="bold">soeren&#64;glasius.dk</strong>) - thank you!<p class="paragraph"/><h2>Documentation for pre 2.x version of this plugin</h2><p class="paragraph"/>This documentation also applies for the latest v1.0.8 of the plugin (for Grails 2.x), except for using the I18nEnumTrait.<p class="paragraph"/><h2>Changes</h2>
+<h3>v2.0.0</h3>
+The plugin is now rewritten for Grails 3.x and is not backwards compatible.
+<ul class="star">
+<li>Still supports annotations, where configuration can be done on every annotation or in config</li>
+<li>Now also supports implementing the I18nEnumTrait on your own enumerations.</li>
+<li>Documentation mentions what sections that only works for Grails 3.x</li>
+</ul><p class="paragraph"/><h3>v1.0.8</h3>
+Cleanup. No functionality changes.<p class="paragraph"/><h3>v1.0.7</h3>
+<ul class="star">
+<li>Files to be pre-compiled moved from groovy-ast to groovy, that way Intellij Idea can find them when parsing the project for completions.</li>
+<li>Test project (test/project/I18nEnumTest) now has more tests incl. GEB</li>
+</ul><p class="paragraph"/><h3>v1.0.5, v1.0.6</h3>
+Updating plugin descriptor, documentation and build dependencies<p class="paragraph"/><h3>v1.0.4</h3>
+Documentation now on GitHub pages instead of grails.org<p class="paragraph"/><h3>v1.0.3</h3>
+Plugin now runs under Grails 2.4.x
+It is no longer a binary plugin. It should compile before all other classes.<p class="paragraph"/><h3>v1.0.2</h3>
+The plugin is now released as a binary plugin due to AST transformations not being applied to inlined plugins.<p class="paragraph"/><h3>v1.0.1</h3>
+Grails event hook to precompile AST transformations before the rest of the Grails compile phase. This is needed
+so that enums annotated will be compiled correctly.<p class="paragraph"/><h3>v1.0.0</h3>
+The plugin was formerly known as <strong class="bold">EnumMessageSourceResolvable</strong>, but was renamed to I18nEnums for easier reading and writing. Functionality wise it has not changed from v1.0.0 of EnumMessageSourceResolvable.<p class="paragraph"/>Now support configuration in Config.groovy - see documentation below<p class="paragraph"/><h3>Previous versions</h3>
+For previous versions see <a href="http://grails.org/plugin/enum-message-source-resolvable" target="blank">EnumMessageSourceResolvable</a><p class="paragraph"/><h2>License</h2>
+Licensed under the Apache2.0 license. See http://www.apache.org/licenses/LICENSE-2.0 for more information.
+
+
+
+                <div style="clear:both;margin-top:15px;"></div>
+                
+                    <div class="toc-item next-right"><a href="../guide/installation.html"><strong>2</strong><span>Installation</span> >></a></div>
+                
+                <div style="clear:both"></div>
+            </div>
+        </td>
+        <td id="col2">
+            <div class="local clearfix">
+                <div class="local-title">
+                    <a href="../guide/index.html" target="mainFrame">Quick Reference</a>
+                    <span class="toggle">(<a href="#" onclick="localToggle(); return false;">hide</a>)</span>
+                </div>
+                <div class="menu">
+                    
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<div id="footer">
+    Copies of this document may be made for your own use and for distribution to others, provided that you do not charge any fee for such copies and further provided that each copy contains this Copyright Notice, whether distributed in print or electronically.
+    
+</div>
+
+<script type="text/javascript" src="../js/docs.js"></script>
+
+</body>
+</html>

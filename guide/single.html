@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        <title>I18nEnum Plugin 2.0-SNAPSHOT</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8" />
+        <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8" />
+    <script type="text/javascript">
+function addJsClass(el) {
+    var classes = document.body.className.split(" ");
+    classes.push("js");
+    document.body.className = classes.join(" ");
+}
+    </script>
+    </head>
+
+    <body class="body" onload="addJsClass();">
+        <div id="navigation">
+            <ul>
+                <li>
+                    <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
+                        <a href="../guide/index.html" class="button">Table of contents</a>
+                        <div id="nav-summary-childs" style="display:none;">
+                            
+                            <div class="toc-item" style="margin-left:0"><a href="#introduction"><strong>1</strong><span>Introduction</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:0"><a href="#installation"><strong>2</strong><span>Installation</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:0"><a href="#usage"><strong>3</strong><span>Usage</span></a></div>
+                            
+                        </div>
+                    </div>
+                </li>
+                <li class="separator selected">
+                    <a id="ref-button" onclick="localToggle(); return false;" href="#">Quick Reference</a>
+                </li>
+            </ul>
+        </div>
+        <div id="header">
+            <div class="images clearfix">
+                
+                
+            </div>
+            <p>Keep your Enums DRY</p>
+        </div>
+
+
+        <table id="colset" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td id="col1">
+                    <div id="main" class="corner-all">
+
+                        <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
+
+                        <div class="project">
+                            <h1>I18nEnum Plugin - Reference Documentation</h1>
+                            <p><strong>Authors:</strong> Søren Berg Glasius</p>
+                            <p><strong>Version:</strong> 2.0-SNAPSHOT</p>
+                            
+                        </div>
+
+                        
+                        <div id="table-of-content">
+                            <h2>Table of Contents</h2>
+                            
+                            <div class="toc-item" style="margin-left:0px"><a href="#introduction"><strong>1</strong><span>Introduction</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:0px"><a href="#installation"><strong>2</strong><span>Installation</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:0px"><a href="#usage"><strong>3</strong><span>Usage</span></a></div>
+                            
+                            <div style="clear:both" ></div>
+                        </div>
+                        
+                        
+
+<h1 id="introduction">1 Introduction</h1>
+This plugin adds an annotation on Enums to easy add and implement the MessageSourceResolvable interface. It was heavily
+inspired by this blog-entry by <a href="http://adhockery.blogspot.dk/2009/03/internationalizing-domain-classes-and.html" target="blank">Rob Fletcher</a><p class="paragraph"/><h2>If you use it, let me know</h2><p class="paragraph"/>If you use this plugin in your application, let me know - it's always nice to know, when ones work is used in the wild.
+Send me a tweet (<strong class="bold">&#64;sbglasius</strong>) or an email (<strong class="bold">soeren&#64;glasius.dk</strong>) - thank you!<p class="paragraph"/><h2>Documentation for pre 2.x version of this plugin</h2><p class="paragraph"/>This documentation also applies for the latest v1.0.8 of the plugin (for Grails 2.x), except for using the I18nEnumTrait.<p class="paragraph"/><h2>Changes</h2>
+<h3>v2.0.0</h3>
+The plugin is now rewritten for Grails 3.x and is not backwards compatible.
+<ul class="star">
+<li>Still supports annotations, where configuration can be done on every annotation or in config</li>
+<li>Now also supports implementing the I18nEnumTrait on your own enumerations.</li>
+<li>Documentation mentions what sections that only works for Grails 3.x</li>
+</ul><p class="paragraph"/><h3>v1.0.8</h3>
+Cleanup. No functionality changes.<p class="paragraph"/><h3>v1.0.7</h3>
+<ul class="star">
+<li>Files to be pre-compiled moved from groovy-ast to groovy, that way Intellij Idea can find them when parsing the project for completions.</li>
+<li>Test project (test/project/I18nEnumTest) now has more tests incl. GEB</li>
+</ul><p class="paragraph"/><h3>v1.0.5, v1.0.6</h3>
+Updating plugin descriptor, documentation and build dependencies<p class="paragraph"/><h3>v1.0.4</h3>
+Documentation now on GitHub pages instead of grails.org<p class="paragraph"/><h3>v1.0.3</h3>
+Plugin now runs under Grails 2.4.x
+It is no longer a binary plugin. It should compile before all other classes.<p class="paragraph"/><h3>v1.0.2</h3>
+The plugin is now released as a binary plugin due to AST transformations not being applied to inlined plugins.<p class="paragraph"/><h3>v1.0.1</h3>
+Grails event hook to precompile AST transformations before the rest of the Grails compile phase. This is needed
+so that enums annotated will be compiled correctly.<p class="paragraph"/><h3>v1.0.0</h3>
+The plugin was formerly known as <strong class="bold">EnumMessageSourceResolvable</strong>, but was renamed to I18nEnums for easier reading and writing. Functionality wise it has not changed from v1.0.0 of EnumMessageSourceResolvable.<p class="paragraph"/>Now support configuration in Config.groovy - see documentation below<p class="paragraph"/><h3>Previous versions</h3>
+For previous versions see <a href="http://grails.org/plugin/enum-message-source-resolvable" target="blank">EnumMessageSourceResolvable</a><p class="paragraph"/><h2>License</h2>
+Licensed under the Apache2.0 license. See http://www.apache.org/licenses/LICENSE-2.0 for more information.
+
+
+
+<h1 id="installation">2 Installation</h1>
+In your plugin section of BuildConfig.groovy insert:<p class="paragraph"/><div class="code"><pre>compile 'org.grails.plugins:i18n&#45;enums:1.0.7'</pre></div>
+
+
+
+<h1 id="usage">3 Usage</h1>
+<h2>Basic usage</h2><p class="paragraph"/>There are two ways to use the I18nEnum plugin:<p class="paragraph"/>You can either implement the trait I18nEnumTrait on your enumeration like this (Only Grails 3.x):<p class="paragraph"/><div class="code"><pre><span class="java&#45;keyword">package</span> test
+<span class="java&#45;keyword">import</span> grails.plugin.i18nEnums.traits.I18nEnumTrait<p class="paragraph"/>enum MyEnum <span class="java&#45;keyword">implements</span> I18nEnumTrait &#123;
+    ONE, Two, three
+&#125;</pre></div><p class="paragraph"/>or you can annotate your enumeration with @I18nEnum (also works for Grails 2.x)<p class="paragraph"/><div class="code"><pre><span class="java&#45;keyword">package</span> test
+<span class="java&#45;keyword">import</span> grails.plugin.i18nEnums.annotations.I18nEnum<p class="paragraph"/>@I18nEnum
+enum MyEnum &#123;
+    ONE, Two, three
+&#125;</pre></div><p class="paragraph"/>will generate the following codes for each enum:
+<div class="code"><pre>test.MyEnum.ONE.codes   == &#91;'test.MyEnum.ONE',   'test.MyEnum.ONE',   'test.MyEnum.one'&#93;
+test.MyEnum.Two.codes   == &#91;'test.MyEnum.TWO',   'test.MyEnum.Two',   'test.MyEnum.two'&#93;
+test.MyEnum.three.codes == &#91;'test.MyEnum.THREE', 'test.MyEnum.three', 'test.MyEnum.three'&#93;</pre></div><p class="paragraph"/>And the following default values:
+<div class="code"><pre>test.MyEnum.ONE.defaultMessage == 'ONE'
+test.MyEnum.Two.defaultMessage == 'Two'
+test.MyEnum.three.defaultMessage == 'three'</pre></div><p class="paragraph"/>as it can be seen, the codes comes in three variations: UPPER_CASE, UNCHANGED and LOWER_CASE, and the default message is
+simply the Enum value.<p class="paragraph"/>If you use the Trait behaviour of the MessageSourceResolvable implementation can only be done from the config file (see the Configuration section below). If you use the annotation, it is possible to use fine grained configuration for each annotation (See the Advanced usage section below)<p class="paragraph"/><h2>Advanced usage</h2><p class="paragraph"/>To get even more control over, how the codes and the default value are generated, you can add parameters to the annotation:<p class="paragraph"/><div class="code"><pre>@I18nEnum(prefix = '', postfix = '', shortName = <span class="java&#45;keyword">false</span>, defaultNameCase = DefaultNameCase.UNCHANGED)</pre></div><p class="paragraph"/>The above are the default values.<p class="paragraph"/>
+<h3>Prefix and Postfix</h3><p class="paragraph"/>Prefix controls what is added before the package name. If you do not add a dot after the prefix, one will be added for you.<p class="paragraph"/>Postfix controls what is added after the ENUM_VALUE. If you do not add a dot before the postfix, one will be added for you.<p class="paragraph"/><h4>Example:</h4>
+<div class="code"><pre><span class="java&#45;keyword">package</span> test
+<span class="java&#45;keyword">import</span> grails.plugin.i18nEnums.annotations.I18nEnum<p class="paragraph"/>@I18nEnum(prefix = 'enum', postfix = 'label')
+enum MyEnum &#123;
+    ONE, Two, three
+&#125;</pre></div><p class="paragraph"/>will generate the following codes for each enum:
+<div class="code"><pre>test.MyEnum.ONE.codes ==   &#91;'enum.test.MyEnum.ONE.label',   'enum.test.MyEnum.ONE.label',   'enum.test.MyEnum.one.label'&#93;
+test.MyEnum.Two.codes ==   &#91;'enum.test.MyEnum.TWO.label',   'enum.test.MyEnum.Two.label',   'enum.test.MyEnum.two.label'&#93;
+test.MyEnum.three.codes == &#91;'enum.test.MyEnum.THREE.label', 'enum.test.MyEnum.three.label', 'enum.test.MyEnum.three.label'&#93;</pre></div><p class="paragraph"/><h3>shortName</h3>
+If you do not want the package name in the generated codes, just add shortName = true to your annotation parameters<p class="paragraph"/><h4>Example:</h4>
+<div class="code"><pre><span class="java&#45;keyword">package</span> test
+<span class="java&#45;keyword">import</span> grails.plugin.i18nEnums.annotations.I18nEnum<p class="paragraph"/>@I18nEnum(shortName = <span class="java&#45;keyword">true</span>)
+enum MyEnum &#123;
+    ONE, Two, three
+&#125;</pre></div><p class="paragraph"/>will generate the following codes for each enum:
+<div class="code"><pre>test.MyEnum.ONE.codes ==   &#91;'MyEnum.ONE',   'MyEnum.ONE',   'MyEnum.one'&#93;
+test.MyEnum.Two.codes ==   &#91;'MyEnum.TWO',   'MyEnum.Two',   'MyEnum.two'&#93;
+test.MyEnum.three.codes == &#91;'MyEnum.THREE', 'MyEnum.three', 'MyEnum.three'&#93;</pre></div><p class="paragraph"/><h3>defaultNameCase</h3>
+To control the defaultMessage you can use defaultNameCase. It can be set to one of the following values:<p class="paragraph"/><div class="code"><pre>UPPER_CASE, LOWER_CASE, CAPITALIZE, ALL_CAPS, UNCHANGED</pre></div><p class="paragraph"/>where UNCHANGED is the default.<p class="paragraph"/><h4>Example:</h4>
+<h5>DefaultNameCase.CAPITALIZE</h5>
+<div class="code"><pre><span class="java&#45;keyword">package</span> test
+<span class="java&#45;keyword">import</span> grails.plugin.i18nEnums.annotations.I18nEnum<p class="paragraph"/>@I18nEnum(defaultNameCase = DefaultNameCase.CAPITALIZE)
+enum MyEnum &#123;
+    ONE, Two, three
+&#125;</pre></div><p class="paragraph"/>And the following default values:
+<div class="code"><pre>test.MyEnum.ONE.defaultMessage == 'One'
+test.MyEnum.Two.defaultMessage == 'Two'
+test.MyEnum.three.defaultMessage == 'Three'</pre></div><p class="paragraph"/><h5>DefaultNameCase.ALL_CAPS</h5>
+<div class="code"><pre><span class="java&#45;keyword">package</span> test
+<span class="java&#45;keyword">import</span> grails.plugin.i18nEnums.annotations.I18nEnum<p class="paragraph"/>@I18nEnum(defaultNameCase = DefaultNameCase.ALL_CAPS)
+enum MyEnum &#123;
+    ONE, Two, three, Four_five
+&#125;</pre></div><p class="paragraph"/>And the following default values:
+<div class="code"><pre>test.MyEnum.ONE.defaultMessage == 'One'
+test.MyEnum.Two.defaultMessage == 'Two'
+test.MyEnum.three.defaultMessage == 'Three'
+test.MyEnum.Four_five.defaultMessage == 'Four Five'</pre></div><p class="paragraph"/><h5>DefaultNameCase.LOWER_CASE</h5>
+<div class="code"><pre><span class="java&#45;keyword">package</span> test
+<span class="java&#45;keyword">import</span> grails.plugin.i18nEnums.annotations.I18nEnum<p class="paragraph"/>@I18nEnum(defaultNameCase = DefaultNameCase.LOWER_CASE)
+enum MyEnum &#123;
+    ONE, Two, three
+&#125;</pre></div><p class="paragraph"/>And the following default values:<p class="paragraph"/><div class="code"><pre>test.MyEnum.ONE.defaultMessage == 'one'
+test.MyEnum.Two.defaultMessage == 'two'
+test.MyEnum.three.defaultMessage == 'three'</pre></div><p class="paragraph"/><h2>Configuration</h2>
+It is possible to configure default settings from configuration. This is the only way to control the code generation if you choose to use the I18nEnumTrait.<p class="paragraph"/>In Configuration.groovy create a configuration tree like this:<p class="paragraph"/><div class="code"><pre><span class="java&#45;keyword">import</span> grails.plugin.i18nEnum.transformation.DefaultNameCase<p class="paragraph"/>// Your other configuration<p class="paragraph"/>grails &#123;
+    plugin &#123;
+        i18nEnum &#123;
+            postfix = <span class="java&#45;quote">"label"</span>
+            shortName = <span class="java&#45;keyword">true</span>
+            defaultNameCase = DefaultNameCase.ALL_CAPS
+        &#125;
+    &#125;
+&#125;</pre></div><p class="paragraph"/>The settings values are the same as the configuration directives for the annotation.
+
+
+                    </div>
+                </td>
+                <td id="col2">
+            <div class="local clearfix">
+                <div class="local-title">
+                    <a href="../guide/index.html" target="mainFrame">Quick Reference</a>
+                    <span class="toggle">(<a href="#" onclick="localToggle(); return false;">hide</a>)</span>
+                </div>
+                <div class="menu">
+                    
+                </div>
+            </div>
+        </td>
+            </tr>
+        </table>
+
+        <div id="footer">
+            Copies of this document may be made for your own use and for distribution to others, provided that you do not charge any fee for such copies and further provided that each copy contains this Copyright Notice, whether distributed in print or electronically.
+            
+        </div>
+
+
+
+<script type="text/javascript" src="../js/docs.js"></script>
+
+    </body>
+</html>
