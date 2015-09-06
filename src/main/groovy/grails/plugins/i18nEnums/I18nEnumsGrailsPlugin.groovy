@@ -2,7 +2,7 @@ package grails.plugins.i18nEnums
 
 import grails.plugins.Plugin
 
-class Grails3I18nEnumsGrailsPlugin extends Plugin {
+class I18nEnumsGrailsPlugin extends Plugin {
 
     def grailsVersion = "3.0.0 > *"
     def title = "I18nEnums Grails Plugin"
