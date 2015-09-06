@@ -11,6 +11,9 @@ h2. Documentation for pre 2.x version of this plugin
 This documentation also applies for the latest v1.0.8 of the plugin (for Grails 2.x), except for using the I18nEnumTrait.
 
 h2. Changes
+h3. v2.0.1
+Code cleanup by Burt Beckwith. Thank you for your contribution.
+
 h3. v2.0.0
 The plugin is now rewritten for Grails 3.x and is not backwards compatible.
 * Still supports annotations, where configuration can be done on every annotation or in config
