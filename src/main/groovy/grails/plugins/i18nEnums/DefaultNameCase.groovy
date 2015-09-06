@@ -1,5 +1,4 @@
-package grails.plugins.i18nenums
-
+package grails.plugins.i18nEnums
 
 enum DefaultNameCase {
 	UPPER_CASE,

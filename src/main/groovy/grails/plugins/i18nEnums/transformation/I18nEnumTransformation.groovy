@@ -1,6 +1,6 @@
-package grails.plugins.i18nenums.transformation
-import grails.plugins.i18nenums.DefaultNameCase
-import grails.plugins.i18nenums.traits.I18nEnumTrait
+package grails.plugins.i18nEnums.transformation
+import grails.plugins.i18nEnums.DefaultNameCase
+import grails.plugins.i18nEnums.traits.I18nEnumTrait
 import groovy.transform.CompilationUnitAware
 import groovy.transform.CompileStatic
 import org.codehaus.groovy.ast.*
@@ -21,7 +21,9 @@ import org.codehaus.groovy.transform.GroovyASTTransformation
 class I18nEnumTransformation implements ASTTransformation, CompilationUnitAware {
 
     public static final String $I18N_ENUM_ASTCONFIG = 'i18nEnumASTConfig'
-    private CompilationUnit compilationUnit
+
+    CompilationUnit compilationUnit
+
     @Override
     void visit(ASTNode[] nodes, SourceUnit source) {
         if (!(nodes[0] instanceof AnnotationNode) || !(nodes[1] instanceof AnnotatedNode)) {
@@ -30,7 +32,6 @@ class I18nEnumTransformation implements ASTTransformation, CompilationUnitAware 
 
         AnnotationNode annotationNode = nodes[0] as AnnotationNode
         def annotatedNode = nodes[1]
-
 
         if (annotatedNode instanceof ClassNode) {
             ClassNode classNode = annotatedNode as ClassNode
@@ -108,11 +109,5 @@ class I18nEnumTransformation implements ASTTransformation, CompilationUnitAware 
             config.defaultNameCase = defaultNameCase
         }
         return config
-    }
-
-
-    @Override
-    void setCompilationUnit(CompilationUnit unit) {
-        this.compilationUnit = unit
     }
 }

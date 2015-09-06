@@ -1,7 +1,7 @@
-package grails.plugins.i18nenums.annotations
+package grails.plugins.i18nEnums.annotations
 
 import org.codehaus.groovy.transform.GroovyASTTransformationClass
-import grails.plugins.i18nenums.DefaultNameCase
+import grails.plugins.i18nEnums.DefaultNameCase
 
 import java.lang.annotation.ElementType
 import java.lang.annotation.Retention
@@ -10,7 +10,7 @@ import java.lang.annotation.Target
 
 @Retention(RetentionPolicy.SOURCE)
 @Target(ElementType.TYPE)
-@GroovyASTTransformationClass(["grails.plugins.i18nenums.transformation.I18nEnumTransformation"])
+@GroovyASTTransformationClass("grails.plugins.i18nEnums.transformation.I18nEnumTransformation")
 public @interface I18nEnum {
     String prefix() default ''
 

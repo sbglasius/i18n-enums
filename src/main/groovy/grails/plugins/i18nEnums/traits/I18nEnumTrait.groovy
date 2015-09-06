@@ -1,6 +1,6 @@
-package grails.plugins.i18nenums.traits
+package grails.plugins.i18nEnums.traits
 
-import grails.plugins.i18nenums.DefaultNameCase
+import grails.plugins.i18nEnums.DefaultNameCase
 import grails.util.Holders
 import groovy.transform.SelfType
 import org.springframework.context.MessageSourceResolvable
@@ -11,7 +11,7 @@ trait I18nEnumTrait implements MessageSourceResolvable {
      * The name() method on enums
      * @return
      */
-    abstract public String name()
+    abstract String name()
 
     @Override
     String[] getCodes() {
@@ -24,7 +24,7 @@ trait I18nEnumTrait implements MessageSourceResolvable {
 
     @Override
     Object[] getArguments() {
-        [] as Object[]
+        []
     }
 
     @Override
@@ -48,7 +48,7 @@ trait I18nEnumTrait implements MessageSourceResolvable {
      * @return
      */
     String getName() {
-        this.name()
+        name()
     }
 
     /**
@@ -59,8 +59,7 @@ trait I18nEnumTrait implements MessageSourceResolvable {
      */
     private static Map<String, Object> getI18nEnumConfig() {
         Map config = Holders.config?.grails?.plugin?.i18nEnum as Map ?: [:]
-        config = config + i18nEnumASTConfig
-        config
+        config + i18nEnumASTConfig
     }
 
     /**

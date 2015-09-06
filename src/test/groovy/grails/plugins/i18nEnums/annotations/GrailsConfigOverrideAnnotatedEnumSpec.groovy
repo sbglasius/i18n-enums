@@ -1,5 +1,6 @@
-package grails.plugins.i18nenums.annotations
-import grails.plugins.i18nenums.DefaultNameCase
+package grails.plugins.i18nEnums.annotations
+
+import grails.plugins.i18nEnums.DefaultNameCase
 import grails.util.Holders
 import org.grails.config.PropertySourcesConfig
 
@@ -7,8 +8,8 @@ class GrailsConfigOverrideAnnotatedEnumSpec extends AnnotationSpecification {
 
     def source = """
 				package test
-				import grails.plugins.i18nenums.annotations.I18nEnum
-                import grails.plugins.i18nenums.DefaultNameCase
+				import grails.plugins.i18nEnums.annotations.I18nEnum
+                import grails.plugins.i18nEnums.DefaultNameCase
 
 				@I18nEnum(prefix = 'overridepre', postfix = 'overridepost', shortName = false, defaultNameCase = DefaultNameCase.UPPER_CASE)
 				enum DefaultAnnotatedEnum {
@@ -25,13 +26,11 @@ class GrailsConfigOverrideAnnotatedEnumSpec extends AnnotationSpecification {
                 defaultNameCase: DefaultNameCase.LOWER_CASE,
                 shortName: true
         ]]]])
-
     }
 
     def cleanup() {
         Holders.config = null
     }
-
 
     def "test that the annotated enum default message returns correct values"() {
         when:
@@ -42,8 +41,6 @@ class GrailsConfigOverrideAnnotatedEnumSpec extends AnnotationSpecification {
         clazz.Two.defaultMessage == 'TWO'
         clazz.three.defaultMessage == 'THREE'
     }
-
-
 
     def "test that the annotated enum arguments returns correct values"() {
         when:
@@ -64,6 +61,4 @@ class GrailsConfigOverrideAnnotatedEnumSpec extends AnnotationSpecification {
         clazz.Two.codes == ['overridepre.test.DefaultAnnotatedEnum.TWO.overridepost', 'overridepre.test.DefaultAnnotatedEnum.Two.overridepost', 'overridepre.test.DefaultAnnotatedEnum.two.overridepost']
         clazz.three.codes == ['overridepre.test.DefaultAnnotatedEnum.THREE.overridepost', 'overridepre.test.DefaultAnnotatedEnum.three.overridepost', 'overridepre.test.DefaultAnnotatedEnum.three.overridepost']
     }
-
-
 }

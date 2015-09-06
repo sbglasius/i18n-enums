@@ -1,11 +1,11 @@
-package grails.plugins.i18nenums.annotations
+package grails.plugins.i18nEnums.annotations
 
 class ShortNamedAnnotatedEnumSpec extends AnnotationSpecification {
 
 	def source = """
 				package test
-				import grails.plugins.i18nenums.annotations.I18nEnum
-				import grails.plugins.i18nenums.DefaultNameCase
+				import grails.plugins.i18nEnums.annotations.I18nEnum
+				import grails.plugins.i18nEnums.DefaultNameCase
 
 				@I18nEnum(shortName = true)
 				enum ShortNamedAnnotatedEnum {
@@ -15,7 +15,6 @@ class ShortNamedAnnotatedEnumSpec extends AnnotationSpecification {
 					FOUR_Five
 				}
 			"""
-
 
 	def "test that the default annotated enum default message returns correct values"() {
 

@@ -1,4 +1,4 @@
-package grails.plugins.i18nenums.annotations
+package grails.plugins.i18nEnums.annotations
 
 import spock.lang.Unroll
 
@@ -6,8 +6,8 @@ class PrefixNamedAnnotatedEnumSpec extends AnnotationSpecification {
 
 	def source = '''
 				package test
-				import grails.plugins.i18nenums.annotations.I18nEnum
-				import grails.plugins.i18nenums.DefaultNameCase
+				import grails.plugins.i18nEnums.annotations.I18nEnum
+				import grails.plugins.i18nEnums.DefaultNameCase
 
 				@I18nEnum(${args})
 				enum PrefixNameCasedAnnotatedEnum {
@@ -18,7 +18,6 @@ class PrefixNamedAnnotatedEnumSpec extends AnnotationSpecification {
 				}
 			'''
 
-
 	@Unroll
 	def "test that the default annotated enum default message returns correct values"() {
 		when:
@@ -27,7 +26,6 @@ class PrefixNamedAnnotatedEnumSpec extends AnnotationSpecification {
 		if(postfix) args << "postfix = '${postfix}'"
         def src = createSourceCodeForTemplate(source, [args: args.join(", ")])
         def clazz = add_class_to_classpath(src)
-
 
 
 		then:
@@ -55,7 +53,6 @@ class PrefixNamedAnnotatedEnumSpec extends AnnotationSpecification {
 				createEnumName(name.toLowerCase(), prefix, postfix)
 		]
 	}
-
 
 	private String createEnumName(name, prefix, postfix) {
 		"${prefix}test.PrefixNameCasedAnnotatedEnum.${name}${postfix}".toString()
