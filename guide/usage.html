@@ -2,7 +2,7 @@
                       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-    <title>3 Usage 2.0-SNAPSHOT</title>
+    <title>3 Usage 2.0.0</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
     <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
@@ -69,7 +69,7 @@ function addJsClass() {
 
                     <p><strong>Authors:</strong> Søren Berg Glasius</p>
 
-                    <p><strong>Version:</strong> 2.0-SNAPSHOT</p>
+                    <p><strong>Version:</strong> 2.0.0</p>
 
                     
                 </div>
@@ -80,10 +80,10 @@ function addJsClass() {
 
 <h1 id="usage">3 Usage</h1>
 <h2>Basic usage</h2><p class="paragraph"/>There are two ways to use the I18nEnum plugin:<p class="paragraph"/>You can either implement the trait I18nEnumTrait on your enumeration like this (Only Grails 3.x):<p class="paragraph"/><div class="code"><pre><span class="java&#45;keyword">package</span> test
-<span class="java&#45;keyword">import</span> grails.plugin.i18nEnums.traits.I18nEnumTrait<p class="paragraph"/>enum MyEnum <span class="java&#45;keyword">implements</span> I18nEnumTrait &#123;
+<span class="java&#45;keyword">import</span> I18nEnumTrait<p class="paragraph"/>enum MyEnum <span class="java&#45;keyword">implements</span> I18nEnumTrait &#123;
     ONE, Two, three
 &#125;</pre></div><p class="paragraph"/>or you can annotate your enumeration with @I18nEnum (also works for Grails 2.x)<p class="paragraph"/><div class="code"><pre><span class="java&#45;keyword">package</span> test
-<span class="java&#45;keyword">import</span> grails.plugin.i18nEnums.annotations.I18nEnum<p class="paragraph"/>@I18nEnum
+<span class="java&#45;keyword">import</span> I18nEnum<p class="paragraph"/>@I18nEnum
 enum MyEnum &#123;
     ONE, Two, three
 &#125;</pre></div><p class="paragraph"/>will generate the following codes for each enum:
@@ -96,7 +96,7 @@ test.MyEnum.three.defaultMessage == 'three'</pre></div><p class="paragraph"/>as 
 simply the Enum value.<p class="paragraph"/>If you use the Trait behaviour of the MessageSourceResolvable implementation can only be done from the config file (see the Configuration section below). If you use the annotation, it is possible to use fine grained configuration for each annotation (See the Advanced usage section below)<p class="paragraph"/><h2>Advanced usage</h2><p class="paragraph"/>To get even more control over, how the codes and the default value are generated, you can add parameters to the annotation:<p class="paragraph"/><div class="code"><pre>@I18nEnum(prefix = '', postfix = '', shortName = <span class="java&#45;keyword">false</span>, defaultNameCase = DefaultNameCase.UNCHANGED)</pre></div><p class="paragraph"/>The above are the default values.<p class="paragraph"/>
 <h3>Prefix and Postfix</h3><p class="paragraph"/>Prefix controls what is added before the package name. If you do not add a dot after the prefix, one will be added for you.<p class="paragraph"/>Postfix controls what is added after the ENUM_VALUE. If you do not add a dot before the postfix, one will be added for you.<p class="paragraph"/><h4>Example:</h4>
 <div class="code"><pre><span class="java&#45;keyword">package</span> test
-<span class="java&#45;keyword">import</span> grails.plugin.i18nEnums.annotations.I18nEnum<p class="paragraph"/>@I18nEnum(prefix = 'enum', postfix = 'label')
+<span class="java&#45;keyword">import</span> I18nEnum<p class="paragraph"/>@I18nEnum(prefix = 'enum', postfix = 'label')
 enum MyEnum &#123;
     ONE, Two, three
 &#125;</pre></div><p class="paragraph"/>will generate the following codes for each enum:
@@ -105,7 +105,7 @@ test.MyEnum.Two.codes ==   &#91;'enum.test.MyEnum.TWO.label',   'enum.test.MyEnu
 test.MyEnum.three.codes == &#91;'enum.test.MyEnum.THREE.label', 'enum.test.MyEnum.three.label', 'enum.test.MyEnum.three.label'&#93;</pre></div><p class="paragraph"/><h3>shortName</h3>
 If you do not want the package name in the generated codes, just add shortName = true to your annotation parameters<p class="paragraph"/><h4>Example:</h4>
 <div class="code"><pre><span class="java&#45;keyword">package</span> test
-<span class="java&#45;keyword">import</span> grails.plugin.i18nEnums.annotations.I18nEnum<p class="paragraph"/>@I18nEnum(shortName = <span class="java&#45;keyword">true</span>)
+<span class="java&#45;keyword">import</span> I18nEnum<p class="paragraph"/>@I18nEnum(shortName = <span class="java&#45;keyword">true</span>)
 enum MyEnum &#123;
     ONE, Two, three
 &#125;</pre></div><p class="paragraph"/>will generate the following codes for each enum:
@@ -115,7 +115,7 @@ test.MyEnum.three.codes == &#91;'MyEnum.THREE', 'MyEnum.three', 'MyEnum.three'&#
 To control the defaultMessage you can use defaultNameCase. It can be set to one of the following values:<p class="paragraph"/><div class="code"><pre>UPPER_CASE, LOWER_CASE, CAPITALIZE, ALL_CAPS, UNCHANGED</pre></div><p class="paragraph"/>where UNCHANGED is the default.<p class="paragraph"/><h4>Example:</h4>
 <h5>DefaultNameCase.CAPITALIZE</h5>
 <div class="code"><pre><span class="java&#45;keyword">package</span> test
-<span class="java&#45;keyword">import</span> grails.plugin.i18nEnums.annotations.I18nEnum<p class="paragraph"/>@I18nEnum(defaultNameCase = DefaultNameCase.CAPITALIZE)
+<span class="java&#45;keyword">import</span> I18nEnum<p class="paragraph"/>@I18nEnum(defaultNameCase = DefaultNameCase.CAPITALIZE)
 enum MyEnum &#123;
     ONE, Two, three
 &#125;</pre></div><p class="paragraph"/>And the following default values:
@@ -123,7 +123,7 @@ enum MyEnum &#123;
 test.MyEnum.Two.defaultMessage == 'Two'
 test.MyEnum.three.defaultMessage == 'Three'</pre></div><p class="paragraph"/><h5>DefaultNameCase.ALL_CAPS</h5>
 <div class="code"><pre><span class="java&#45;keyword">package</span> test
-<span class="java&#45;keyword">import</span> grails.plugin.i18nEnums.annotations.I18nEnum<p class="paragraph"/>@I18nEnum(defaultNameCase = DefaultNameCase.ALL_CAPS)
+<span class="java&#45;keyword">import</span> I18nEnum<p class="paragraph"/>@I18nEnum(defaultNameCase = DefaultNameCase.ALL_CAPS)
 enum MyEnum &#123;
     ONE, Two, three, Four_five
 &#125;</pre></div><p class="paragraph"/>And the following default values:
@@ -132,7 +132,7 @@ test.MyEnum.Two.defaultMessage == 'Two'
 test.MyEnum.three.defaultMessage == 'Three'
 test.MyEnum.Four_five.defaultMessage == 'Four Five'</pre></div><p class="paragraph"/><h5>DefaultNameCase.LOWER_CASE</h5>
 <div class="code"><pre><span class="java&#45;keyword">package</span> test
-<span class="java&#45;keyword">import</span> grails.plugin.i18nEnums.annotations.I18nEnum<p class="paragraph"/>@I18nEnum(defaultNameCase = DefaultNameCase.LOWER_CASE)
+<span class="java&#45;keyword">import</span> I18nEnum<p class="paragraph"/>@I18nEnum(defaultNameCase = DefaultNameCase.LOWER_CASE)
 enum MyEnum &#123;
     ONE, Two, three
 &#125;</pre></div><p class="paragraph"/>And the following default values:<p class="paragraph"/><div class="code"><pre>test.MyEnum.ONE.defaultMessage == 'one'

@@ -1,4 +1,4 @@
-grails.plugin.i18nEnums
-grails.plugin.i18nEnums.annotations
-grails.plugin.i18nEnums.traits
-grails.plugin.i18nEnums.transformation
+grails.plugins.i18nenums
+grails.plugins.i18nenums.annotations
+grails.plugins.i18nenums.traits
+grails.plugins.i18nenums.transformation
