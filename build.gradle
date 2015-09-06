@@ -12,8 +12,8 @@ buildscript {
 }
 
 plugins {
-    id "io.spring.dependency-management" version "0.4.0.RELEASE"
-    id "com.jfrog.bintray" version "1.1"
+    id "io.spring.dependency-management" version "0.5.2.RELEASE"
+    id "com.jfrog.bintray" version "1.2"
 }
 
 version "2.0-SNAPSHOT"
@@ -26,7 +26,7 @@ apply plugin: "spring-boot"
 apply plugin: "org.grails.grails-plugin"
 apply plugin: "org.grails.grails-gsp"
 apply plugin: "org.grails.grails-doc"
-// Used for publishing to central repository, remove if not needed
+
 apply from:'https://raw.githubusercontent.com/grails/grails-profile-repository/master/profiles/plugin/templates/grailsCentralPublishing.gradle'
 apply from:'https://raw.githubusercontent.com/grails/grails-profile-repository/master/profiles/plugin/templates/bintrayPublishing.gradle'
 
@@ -37,7 +37,6 @@ ext {
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
-
 
 repositories {
     mavenLocal()
@@ -74,5 +73,4 @@ task wrapper(type: Wrapper) {
 bintray {
     user = "${bintray.user}"
     key = "${bintray.key}"
-
 }
