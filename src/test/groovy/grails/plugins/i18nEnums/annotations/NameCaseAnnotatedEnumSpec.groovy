@@ -1,4 +1,4 @@
-package grails.plugins.i18nenums.annotations
+package grails.plugins.i18nEnums.annotations
 
 import spock.lang.Unroll
 
@@ -6,8 +6,8 @@ class NameCaseAnnotatedEnumSpec extends AnnotationSpecification {
 
 	def source = '''
 				package test
-				import grails.plugins.i18nenums.annotations.I18nEnum
-				import grails.plugins.i18nenums.DefaultNameCase
+				import grails.plugins.i18nEnums.annotations.I18nEnum
+				import grails.plugins.i18nEnums.DefaultNameCase
 
 				@I18nEnum(defaultNameCase = DefaultNameCase.${nameCase})
 				enum NameCasedAnnotatedEnum {
@@ -17,7 +17,6 @@ class NameCaseAnnotatedEnumSpec extends AnnotationSpecification {
 					FOUR_FIVE
 				}
 			'''
-
 
 	@Unroll
 	def "test that the default annotated enum default message returns correct values"() {
@@ -40,4 +39,3 @@ class NameCaseAnnotatedEnumSpec extends AnnotationSpecification {
 		'ALL_CAPS' | 'One' | 'Two' | 'Three' | 'Four Five'
 	}
 }
-

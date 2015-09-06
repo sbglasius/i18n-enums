@@ -1,4 +1,4 @@
-package grails.plugins.i18nenums.annotations
+package grails.plugins.i18nEnums.annotations
 
 class AlreadyImplementedMethodAnnotatedEnumSpec extends AnnotationSpecification {
 
@@ -6,7 +6,7 @@ class AlreadyImplementedMethodAnnotatedEnumSpec extends AnnotationSpecification 
         """
             package test
 
-            import grails.plugins.i18nenums.annotations.I18nEnum
+            import grails.plugins.i18nEnums.annotations.I18nEnum
             import org.springframework.context.MessageSourceResolvable
 
 

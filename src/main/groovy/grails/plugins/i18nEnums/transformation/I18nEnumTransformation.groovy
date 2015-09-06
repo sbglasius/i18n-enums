@@ -1,6 +1,6 @@
-package grails.plugins.i18nenums.transformation
-import grails.plugins.i18nenums.DefaultNameCase
-import grails.plugins.i18nenums.traits.I18nEnumTrait
+package grails.plugins.i18nEnums.transformation
+import grails.plugins.i18nEnums.DefaultNameCase
+import grails.plugins.i18nEnums.traits.I18nEnumTrait
 import groovy.transform.CompilationUnitAware
 import groovy.transform.CompileStatic
 import org.codehaus.groovy.ast.*

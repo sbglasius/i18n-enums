@@ -1,4 +1,4 @@
-package grails.plugins.i18nenums
+package grails.plugins.i18nEnums
 
 import grails.plugins.*
 
