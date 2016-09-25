@@ -5,3 +5,4 @@ atlassian-ide-plugin.xml
 gradle/gradle.iml
 grails3-i18n-enums.i*
 build/
+atlassian-ide-plugin.xml
