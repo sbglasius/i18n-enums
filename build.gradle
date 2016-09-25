@@ -46,10 +46,12 @@ dependencies {
     compile "org.springframework.boot:spring-boot-autoconfigure"
     compile "org.grails:grails-core"
     console "org.grails:grails-console"
+    compile 'org.codehaus.groovy:groovy-all'
     profile "org.grails.profiles:plugin"
-    provided "org.grails:grails-plugin-services"
     provided "org.grails:grails-plugin-domain-class"
+
     testCompile "org.grails:grails-plugin-testing"
+    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
 }
 
 grailsPublish {
