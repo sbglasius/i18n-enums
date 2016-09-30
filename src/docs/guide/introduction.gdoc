@@ -11,6 +11,9 @@ h2. Documentation for pre 2.x version of this plugin
 This documentation also applies for the latest v1.0.8 of the plugin (for Grails 2.x), except for using the I18nEnumTrait.
 
 h2. Changes
+h3. v2.0.2
+More cleanup and automatic build on Travis-CI. No functionality changes
+
 h3. v2.0.1
 Code cleanup by Burt Beckwith. Thank you for your contribution.
 

@@ -1,5 +1,5 @@
-In your plugin section of BuildConfig.groovy insert:
+In your `build.gradle` insert into your `dependencies`:
 
 {code}
-compile 'org.grails.plugins:i18n-enums:1.0.7'
+compile 'org.grails.plugins:i18n-enums:2.0.2'
 {code}
