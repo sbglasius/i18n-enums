@@ -1,59 +1,49 @@
-This plugin adds an annotation on Enums to easy add and implement the MessageSourceResolvable interface. It was heavily
-inspired by this blog-entry by [Rob Fletcher|http://adhockery.blogspot.dk/2009/03/internationalizing-domain-classes-and.html]
+### Changes
+#### v2.0.2
+No functionality changes
 
-h2. If you use it, let me know
+* More cleanup and automatic build on Travis-CI.
+* Migrated documentation to AsciiDoctor
 
-If you use this plugin in your application, let me know - it's always nice to know, when ones work is used in the wild.
-Send me a tweet (*\@sbglasius*) or an email (*soeren\@glasius.dk*) - thank you!
-
-h2. Documentation for pre 2.x version of this plugin
-
-This documentation also applies for the latest v1.0.8 of the plugin (for Grails 2.x), except for using the I18nEnumTrait.
-
-h2. Changes
-h3. v2.0.2
-More cleanup and automatic build on Travis-CI. No functionality changes
-
-h3. v2.0.1
+### v2.0.1
 Code cleanup by Burt Beckwith. Thank you for your contribution.
 
-h3. v2.0.0
+#### v2.0.0
 The plugin is now rewritten for Grails 3.x and is not backwards compatible.
+
 * Still supports annotations, where configuration can be done on every annotation or in config
 * Now also supports implementing the I18nEnumTrait on your own enumerations.
 * Documentation mentions what sections that only works for Grails 3.x
 
-h3. v1.0.8
+#### v1.0.8
 Cleanup. No functionality changes.
 
-h3. v1.0.7
+#### v1.0.7
+
 * Files to be pre-compiled moved from groovy-ast to groovy, that way Intellij Idea can find them when parsing the project for completions.
 * Test project (test/project/I18nEnumTest) now has more tests incl. GEB
 
-h3. v1.0.5, v1.0.6
+#### v1.0.5, v1.0.6
 Updating plugin descriptor, documentation and build dependencies
 
-h3. v1.0.4
+#### v1.0.4
 Documentation now on GitHub pages instead of grails.org
 
-h3. v1.0.3
+#### v1.0.3
 Plugin now runs under Grails 2.4.x
 It is no longer a binary plugin. It should compile before all other classes.
 
-h3. v1.0.2
+#### v1.0.2
 The plugin is now released as a binary plugin due to AST transformations not being applied to inlined plugins.
 
-h3. v1.0.1
+#### v1.0.1
 Grails event hook to precompile AST transformations before the rest of the Grails compile phase. This is needed
 so that enums annotated will be compiled correctly.
 
-h3. v1.0.0
+#### v1.0.0
 The plugin was formerly known as *EnumMessageSourceResolvable*, but was renamed to I18nEnums for easier reading and writing. Functionality wise it has not changed from v1.0.0 of EnumMessageSourceResolvable.
 
 Now support configuration in Config.groovy - see documentation below
 
-h3. Previous versions
+#### Previous versions
 For previous versions see [EnumMessageSourceResolvable|http://grails.org/plugin/enum-message-source-resolvable]
-
-h2. License
-Licensed under the Apache2.0 license. See http://www.apache.org/licenses/LICENSE-2.0 for more information.

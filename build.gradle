@@ -12,6 +12,7 @@ buildscript {
 }
 plugins {
     id "com.jfrog.artifactory" version "4.4.0"
+    id 'org.asciidoctor.convert' version '1.5.3'
 }
 version project.pluginVersion
 group "org.grails.plugins"
@@ -52,6 +53,25 @@ dependencies {
 
     testCompile "org.grails:grails-plugin-testing"
     testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
+}
+
+asciidoctor {
+    resources {
+        from('src/docs/images')
+        into "./images"
+    }
+
+    attributes 'experimental': 'true',
+            'compat-mode': 'true',
+            'toc': 'left',
+            'icons': 'font',
+            'version': project.version,
+            'sourcedir': 'src/main/groovy'
+}
+
+task docs(type: Copy, dependsOn: [groovydoc, asciidoctor]) {
+    from "$buildDir/asciidoc/html5"
+    into "$buildDir/docs"
 }
 
 grailsPublish {
