@@ -13,7 +13,7 @@ echo "Publishing archives for branch $TRAVIS_BRANCH"
 if [[ -n $TRAVIS_TAG ]] || [[ $TRAVIS_BRANCH == 'master' && $TRAVIS_PULL_REQUEST == 'false' ]]; then
   if [[ -n $TRAVIS_TAG ]]; then
     echo "Pushing plugin version $TRAVIS_TAG to Bintray"
-    ./gradlew bintrayUpload -PpluginVersion=$TRAVIS_TAG || EXIT_STATUS=$?
+    ./gradlew -PpluginVersion=$TRAVIS_TAG bintrayUpload notifyPluginPortal || EXIT_STATUS=$?
   else
     echo "Publishing snapshot to OJO"
     ./gradlew artifactoryPublish || EXIT_STATUS=$?
