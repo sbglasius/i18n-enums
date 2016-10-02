@@ -5,7 +5,7 @@ No functionality changes
 * More cleanup and automatic build on Travis-CI.
 * Migrated documentation to AsciiDoctor
 
-### v2.0.1
+#### v2.0.1
 Code cleanup by Burt Beckwith. Thank you for your contribution.
 
 #### v2.0.0
