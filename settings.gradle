@@ -1,1 +1,6 @@
 rootProject.name = 'i18n-enums'
+
+include 'plugin'
+include 'docs'
+
+findProject(':plugin').name = 'i18n-enums'

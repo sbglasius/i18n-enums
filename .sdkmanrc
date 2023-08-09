@@ -1,0 +1,4 @@
+java=11.0.20-zulu
+grails=5.0.1
+gradle=6.9.1
+groovy=3.0.7
