@@ -8,19 +8,6 @@ buildscript {
 
 plugins {
 	id 'org.asciidoctor.jvm.convert' version '2.4.0'
-	id 'org.ajoberstar.git-publish' version '3.0.1'
-}
-
-gitPublish {
-	repoUri = 'git@github.com:jdaugherty/i18n-enums.git'
-	branch  = 'gh-pages'
-
-	// what to publish, this is a standard CopySpec
-	contents {
-		from "${buildDir}/docs"
-	}
-
-	sign = false
 }
 
 asciidoctor {
@@ -38,6 +25,3 @@ asciidoctor {
 			idseparator         : '-',
 			version             : version
 }
-
-// Rebuild docs before pushing
-gitPublishPush.dependsOn asciidoctor
