@@ -9,7 +9,7 @@ publishing {
     publications {
         maven(MavenPublication) {
             artifactId = 'i18n-enums'
-            groupId = 'io.github.jdaugherty'
+            groupId = 'dk.glasius'
             version = project.version
 
             from components.java
@@ -17,7 +17,7 @@ publishing {
             pom {
                 name = 'I18n Enums'
                 description = 'Adds an annotation usable on Enums to easy add and implement the MessageSourceResolvable interface in an standard way throughout a grails project.'
-                url = 'https://jdaugherty.github.io/i18n-enums/'
+                url = 'https://github.com/sbglasius/i18n-enums'
                 licenses {
                     license {
                         name = 'The Apache License, Version 2.0'
@@ -42,9 +42,9 @@ publishing {
                     }
                 }
                 scm {
-                    connection = "scm:git:git://github.com/jdaugherty/i18n-enums.git"
-                    developerConnection = "scm:git:ssh://github.com:jdaugherty/i18n-enums.git"
-                    url = 'https://github.com/jdaugherty/i18n-enums/tree/main'
+                    connection = "scm:git:git://github.com/sbglasius/i18n-enums.git"
+                    developerConnection = "scm:git:ssh://github.com:sbglasius/i18n-enums.git"
+                    url = 'https://github.com/sbglasius/i18n-enums/tree/main'
                 }
             }
 
