@@ -4,6 +4,7 @@ buildscript {
     }
     repositories {
         mavenLocal()
+        mavenCentral()
         maven { url "https://repo.grails.org/grails/core" }
         maven { url "https://plugins.gradle.org/m2/" }
     }
@@ -22,6 +23,7 @@ plugins {
 
 repositories {
     mavenLocal()
+    mavenCentral()
     maven { url "https://repo.grails.org/grails/core" }
 }
 
@@ -42,6 +44,7 @@ subprojects {
 
     repositories {
         mavenLocal()
+        mavenCentral()
         maven { url "https://repo.grails.org/grails/core" }
     }
 
@@ -72,8 +75,8 @@ if (project.hasProperty('release')) {
                 def ossUser = System.getenv("SONATYPE_USERNAME") ?: project.hasProperty("sonatypeOssUsername") ? project.sonatypeOssUsername : ''
                 def ossPass = System.getenv("SONATYPE_PASSWORD") ?: project.hasProperty("sonatypeOssPassword") ? project.sonatypeOssPassword : ''
                 def ossStagingProfileId = System.getenv("SONATYPE_STAGING_PROFILE_ID") ?: project.hasProperty("sonatypeOssStagingProfileId") ? project.sonatypeOssStagingProfileId : ''
-                nexusUrl = uri("https://s01.oss.sonatype.org/service/local/")
-                snapshotRepositoryUrl = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+                nexusUrl = uri("https://oss.sonatype.org/service/local/")
+                snapshotRepositoryUrl = uri("https://oss.sonatype.org/content/repositories/snapshots/")
                 username = ossUser
                 password = ossPass
                 stagingProfileId = ossStagingProfileId
