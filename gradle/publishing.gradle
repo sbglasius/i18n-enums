@@ -1,0 +1,78 @@
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+ext {
+    isReleaseVersion = !version.toString().endsWith("SNAPSHOT")
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifactId = 'i18n-enums'
+            groupId = 'dk.glasius'
+            version = project.version
+
+            from components.java
+
+            pom {
+                name = 'I18n Enums'
+                description = 'Adds an annotation usable on Enums to easy add and implement the MessageSourceResolvable interface in an standard way throughout a grails project.'
+                url = 'https://github.com/sbglasius/i18n-enums'
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'https://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'soeren'
+                        name = 'Søren Berg Glasius'
+                        email = "soeren@glasius.dk"
+                    }
+                    developer {
+                        id = 'burt'
+                        name = 'Burt Beckwith'
+                        email = "burt@burtbeckwith.com"
+                    }
+                    developer {
+                        id = 'jdaugherty'
+                        name = 'James Daugherty'
+                        email = "jdaugherty@jdresources.net"
+                    }
+                }
+                scm {
+                    connection = "scm:git:git://github.com/sbglasius/i18n-enums.git"
+                    developerConnection = "scm:git:ssh://github.com:sbglasius/i18n-enums.git"
+                    url = 'https://github.com/sbglasius/i18n-enums/tree/main'
+                }
+            }
+
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('runtimeClasspath')
+                }
+                usage('java-runtime') {
+                    fromResolutionResult()
+                }
+            }
+        }
+    }
+}
+
+afterEvaluate {
+    signing {
+        ext["signing.keyId"] = System.getenv('SIGNING_KEY_ID')
+        ext["signing.password"] = System.getenv('SIGNING_PASSPHRASE')
+        ext["signing.secretKeyRingFile"] = System.getenv('SECRING_FILE')
+
+        required {
+            isReleaseVersion && gradle.taskGraph.hasTask("publish")
+        }
+        sign publishing.publications.maven
+    }
+}
+
+tasks.withType(Sign) {
+    onlyIf { isReleaseVersion }
+}

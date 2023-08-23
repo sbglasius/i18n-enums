@@ -5,100 +5,94 @@ buildscript {
     repositories {
         mavenLocal()
         maven { url "https://repo.grails.org/grails/core" }
+        maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        classpath "org.grails:grails-gradle-plugin:$grailsVersion"
+        classpath "org.grails:grails-gradle-plugin:$grailsGradlePluginVersion"
+        classpath "org.grails:grails-docs:${project.ext.properties.grailsDocsVersion ?: grailsVersion}"
+        classpath 'io.github.groovylang.groovydoc:groovydoc-gradle-plugin:1.0.1'
+        classpath "io.github.gradle-nexus:publish-plugin:$gradlePublishPlugin"
     }
 }
+
 plugins {
-    id "com.jfrog.artifactory" version "4.4.0"
-    id 'org.asciidoctor.convert' version '1.5.3'
+    id "com.adarshr.test-logger" version "2.0.0"
+    id 'io.github.gradle-nexus.publish-plugin' version "${gradlePublishPlugin}"
 }
-version project.pluginVersion
-group "org.grails.plugins"
-
-apply plugin: "eclipse"
-apply plugin: "idea"
-apply plugin: "org.grails.grails-plugin"
-apply plugin: "org.grails.grails-plugin-publish"
-
-ext {
-    grailsVersion = project.grailsVersion
-    gradleWrapperVersion = project.gradleWrapperVersion
-}
-
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
 
 repositories {
     mavenLocal()
     maven { url "https://repo.grails.org/grails/core" }
 }
 
-dependencyManagement {
-    imports {
-        mavenBom "org.grails:grails-bom:$grailsVersion"
-    }
-    applyMavenExclusions false
+version project.projectVersion
+
+ext {
+    isBuildSnapshot = version.toString().endsWith("-SNAPSHOT")
 }
 
-dependencies {
-    compile "org.springframework.boot:spring-boot-starter-logging"
-    compile "org.springframework.boot:spring-boot-autoconfigure"
-    compile "org.grails:grails-core"
-    console "org.grails:grails-console"
-    compile 'org.codehaus.groovy:groovy-all'
-    profile "org.grails.profiles:plugin"
-    provided "org.grails:grails-plugin-domain-class"
+subprojects {
+    version project.projectVersion
 
-    testCompile "org.grails:grails-plugin-testing"
-    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
-}
-
-asciidoctor {
-    resources {
-        from('src/docs/images')
-        into "./images"
+    ext {
+        isBuildSnapshot = version.toString().endsWith("-SNAPSHOT")
     }
 
-    attributes 'experimental': 'true',
-            'compat-mode': 'true',
-            'toc': 'left',
-            'icons': 'font',
-            'version': project.version,
-            'sourcedir': 'src/main/groovy'
-}
+    apply plugin: 'groovy'
 
-task docs(type: Copy, dependsOn: [groovydoc, asciidoctor]) {
-    from "$buildDir/asciidoc/html5"
-    into "$buildDir/docs"
-}
-
-grailsPublish {
-    user = System.getenv("BINTRAY_USER") ?: project.bintrayUser
-    key = System.getenv("BINTRAY_KEY") ?: project.bintrayKey
-
-    githubSlug = 'https://github.com/sbglasius/i18n-enums'
-    license {
-        name = 'Apache-2.0'
+    repositories {
+        mavenLocal()
+        maven { url "https://repo.grails.org/grails/core" }
     }
-    title = project.name
-    desc = "This plugin adds an annotation usable on Enums to easy add and implement the MessageSourceResolvable interface in an standard way throughout a project."
-    developers = [sbglasius: "Soeren Berg Glasius"]
-    portalUser = System.getenv("GRAILS_PORTAL_USER") ?: project.grailsPortalUser
-    portalPassword = System.getenv("GRAILS_PORTAL_PASSWORD") ?: project.grailsPortalPassword
-}
 
-artifactory {
-    contextUrl = 'http://oss.jfrog.org'
-    publish {
-        repository {
-            repoKey = 'oss-snapshot-local'
-            username = System.getenv("BINTRAY_USER") ?: project.bintrayUser
-            password = System.getenv("BINTRAY_KEY") ?: project.bintrayKey
+    java {
+        withSourcesJar()
+        withJavadocJar()
+    }
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    tasks.withType(Test) {
+        useJUnitPlatform()
+        testLogging {
+            events "failed"
+            exceptionFormat "full"
         }
-        defaults {
-            publications('maven')
+        testlogger {
+            theme 'mocha'
+        }
+    }
+}
+
+if (project.hasProperty('release')) {
+    nexusPublishing {
+        repositories {
+            sonatype {
+                def ossUser = System.getenv("SONATYPE_USERNAME") ?: project.hasProperty("sonatypeOssUsername") ? project.sonatypeOssUsername : ''
+                def ossPass = System.getenv("SONATYPE_PASSWORD") ?: project.hasProperty("sonatypeOssPassword") ? project.sonatypeOssPassword : ''
+                def ossStagingProfileId = System.getenv("SONATYPE_STAGING_PROFILE_ID") ?: project.hasProperty("sonatypeOssStagingProfileId") ? project.sonatypeOssStagingProfileId : ''
+                nexusUrl = uri("https://s01.oss.sonatype.org/service/local/")
+                snapshotRepositoryUrl = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+                username = ossUser
+                password = ossPass
+                stagingProfileId = ossStagingProfileId
+            }
+        }
+    }
+}
+
+//do not generate extra load on Nexus with new staging repository if signing fails
+tasks.withType(io.github.gradlenexus.publishplugin.InitializeNexusStagingRepository).configureEach {
+    shouldRunAfter(tasks.withType(Sign))
+}
+
+task snapshotVersion {
+    doLast {
+        if (!project.version.endsWith('-SNAPSHOT')) {
+            ant.propertyfile(file: "gradle.properties") {
+                entry(key: "projectVersion", value: "${project.version}-SNAPSHOT")
+            }
         }
     }
 }

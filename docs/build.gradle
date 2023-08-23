@@ -1,0 +1,27 @@
+buildscript {
+	repositories {
+		mavenLocal()
+		maven { url "https://repo.grails.org/grails/core" }
+		gradlePluginPortal()
+	}
+}
+
+plugins {
+	id 'org.asciidoctor.jvm.convert' version '2.4.0'
+}
+
+asciidoctor {
+	baseDir file('src/asciidoc')
+	sourceDir file('src/asciidoc')
+	outputDir file("$buildDir/docs")
+	options doctype: 'book'
+	attributes 'source-highlighter': 'coderay',
+			toc                 : 'left',
+			toclevels           : '2',
+			'toc-title'         : 'Table of Contents',
+			icons               : 'font',
+			id                  : project.name + ':' + project.version,
+			idprefix            : '',
+			idseparator         : '-',
+			version             : version
+}
