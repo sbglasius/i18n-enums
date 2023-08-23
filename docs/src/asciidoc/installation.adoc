@@ -2,5 +2,5 @@ In your `build.gradle` insert into your `dependencies`:
 
 [source,groovy,subs="attributes"]
 ----
-compile 'org.grails.plugins:i18n-enums:{version}'
+implementation 'org.grails.plugins:i18n-enums:{version}'
 ----

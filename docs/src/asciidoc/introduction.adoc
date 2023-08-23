@@ -10,7 +10,5 @@ Send me a tweet *@sbglasius* or an email *soeren@glasius.dk* - thank you!
 
 This documentation also applies for the latest v1.0.8 of the plugin (for Grails 2.x), except for using the `I18nEnumTrait`.
 
-
-
 ### License
 Licensed under the Apache2.0 license. See http://www.apache.org/licenses/LICENSE-2.0 for more information.

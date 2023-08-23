@@ -53,7 +53,7 @@ subprojects {
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
 
-    tasks.withType(Test) {
+    tasks.withType(Test).configureEach {
         useJUnitPlatform()
         testLogging {
             events "failed"
@@ -87,7 +87,7 @@ tasks.withType(io.github.gradlenexus.publishplugin.InitializeNexusStagingReposit
     shouldRunAfter(tasks.withType(Sign))
 }
 
-task snapshotVersion {
+tasks.register('snapshotVersion') {
     doLast {
         if (!project.version.endsWith('-SNAPSHOT')) {
             ant.propertyfile(file: "gradle.properties") {
