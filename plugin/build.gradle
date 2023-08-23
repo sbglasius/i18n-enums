@@ -8,11 +8,8 @@ buildscript {
 	}
 }
 
-// Plugin version is set in the root/build.gradle
-group "org.grails.plugins"
+group "dk.glasius"
 
-apply plugin: "eclipse"
-apply plugin: "idea"
 apply plugin: "org.grails.grails-plugin"
 apply plugin: "signing"
 apply plugin: "maven-publish"

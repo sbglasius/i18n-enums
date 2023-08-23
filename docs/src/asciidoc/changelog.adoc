@@ -2,8 +2,11 @@
 #### v5.0.0
 This plugin is now rewritten for Grails 5.x and is not backwards compatible.
 
+* Migrate group name from org.grails.plugins to dk.glasius
 * Remove deprecated usages of ConfigObject
 * Migrate to Maven Central from grails artifactory instance
+
+Migration to Grails 5 by James Daugherty. Thank you for your contribution.
 
 #### v2.0.2
 No functionality changes
