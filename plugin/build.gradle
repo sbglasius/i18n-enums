@@ -108,6 +108,8 @@ afterEvaluate {
 		ext["signing.password"] = System.getenv('SIGNING_PASSPHRASE')
 		ext["signing.secretKeyRingFile"] = System.getenv('SECRING_FILE')
 
+		logger.lifecycle("Signing: ${signing.secretKeyRingFile}")
+
 		required {
 			isReleaseVersion
 		}
@@ -116,5 +118,5 @@ afterEvaluate {
 }
 
 tasks.withType(Sign).configureEach {
-	onlyIf { ext.isReleaseVersion }
+	onlyIf { isReleaseVersion }
 }
