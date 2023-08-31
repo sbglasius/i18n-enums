@@ -27,14 +27,11 @@ repositories {
     maven { url "https://repo.grails.org/grails/core" }
 }
 
-version project.projectVersion
-
 ext {
     isBuildSnapshot = version.toString().endsWith("-SNAPSHOT")
 }
 
 subprojects {
-    version project.projectVersion
 
     ext {
         isBuildSnapshot = version.toString().endsWith("-SNAPSHOT")
@@ -85,8 +82,9 @@ if (project.hasProperty('release')) {
     }
 }
 
-//do not generate extra load on Nexus with new staging repository if signing fails
+//do not generate extra load on Nexus with new staging repository if signing fails or if not a release version
 tasks.withType(io.github.gradlenexus.publishplugin.InitializeNexusStagingRepository).configureEach {
+    onlyIf { ext.isReleaseVersion }
     shouldRunAfter(tasks.withType(Sign))
 }
 
@@ -94,7 +92,7 @@ tasks.register('snapshotVersion') {
     doLast {
         if (!project.version.endsWith('-SNAPSHOT')) {
             ant.propertyfile(file: "gradle.properties") {
-                entry(key: "projectVersion", value: "${project.version}-SNAPSHOT")
+                entry(key: "version", value: "${project.version}-SNAPSHOT")
             }
         }
     }

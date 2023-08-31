@@ -57,14 +57,14 @@ jobs:
             NEXT_VERSION: ${{ steps.bump_semver.outputs.new_version }}
           run: |
             echo "Preparing next snapshot"
-            ./gradlew snapshotVersion -PprojectVersion="${NEXT_VERSION}"
+            ./gradlew snapshotVersion -Pversion="${NEXT_VERSION}"
       -   name: Commit & Push changes
           uses: actions-js/push@master
           with:
             github_token: ${{ secrets.GITHUB_TOKEN }}
             author_name: ${{ secrets.GIT_USER_NAME }}
             author_email: $${ secrets.GIT_USER_EMAIL }}
-            message: 'Set projectVersion to next SNAPSHOT'
+            message: 'Set project version to next SNAPSHOT'
       -   name: Export Gradle Properties
           uses: micronaut-projects/github-actions/export-gradle-properties@master
       -   name: Run post-release
