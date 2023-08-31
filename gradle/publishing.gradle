@@ -1,9 +1,8 @@
 apply plugin: 'maven-publish'
 apply plugin: 'signing'
 
-ext {
-    isReleaseVersion = !version.toString().endsWith("SNAPSHOT")
-}
+ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
+
 
 publishing {
     publications {
@@ -26,7 +25,7 @@ publishing {
                 }
                 developers {
                     developer {
-                        id = 'soeren'
+                        id = 'sbglasius'
                         name = 'Søren Berg Glasius'
                         email = "soeren@glasius.dk"
                     }
@@ -67,12 +66,12 @@ afterEvaluate {
         ext["signing.secretKeyRingFile"] = System.getenv('SECRING_FILE')
 
         required {
-            isReleaseVersion && gradle.taskGraph.hasTask("publish")
+            isReleaseVersion
         }
         sign publishing.publications.maven
     }
 }
 
-tasks.withType(Sign) {
-    onlyIf { isReleaseVersion }
+tasks.withType(Sign).configureEach {
+    onlyIf { ext.isReleaseVersion }
 }
