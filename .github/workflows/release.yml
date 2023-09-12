@@ -37,15 +37,12 @@ jobs:
             SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
             SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
             SONATYPE_STAGING_PROFILE_ID: ${{ secrets.SONATYPE_STAGING_PROFILE_ID }}
-            SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
-            SIGNING_PASSPHRASE: ${{ secrets.SIGNING_PASSPHRASE }}
-            SECRING_FILE: ${{ secrets.SECRING_FILE }}
+            SIGN_ARMORED_KEY: ${{ secrets.SIGN_ARMORED_KEY }}
+            SIGN_PASSWORD: ${{ secrets.SIGNING_PASSPHRASE }}
             RELEASE_VERSION: ${{ steps.get_version.outputs.version-without-v }}
           run: |
-            echo "$SECRING_FILE" | base64 -d > ${GITHUB_WORKSPACE}/secring.gpg
             echo "Publishing Artifacts for $RELEASE_VERSION"
-            (set -x; ./gradlew --info -Prelease=true -Pversion="${RELEASE_VERSION}" -Psigning.secretKeyRingFile="${GITHUB_WORKSPACE}/secring.gpg" :i18n-enums:publishToSonatype closeAndReleaseSonatypeStagingRepository --no-daemon)
-            rm ${GITHUB_WORKSPACE}/secring.gpg
+            (set -x; ./gradlew -info -Prelease=true -Pversion="${RELEASE_VERSION}" :i18n-enums:publishToSonatype closeAndReleaseSonatypeStagingRepository --no-daemon)
       -   name: Bump patch version by one
           uses: actions-ecosystem/action-bump-semver@v1
           id: bump_semver
