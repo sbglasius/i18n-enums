@@ -102,12 +102,6 @@ publishing {
 	}
 }
 
-tasks.register('debug') {
-	doLast {
-		logger.lifecycle("Signing: ${getProperty('signing.secretKeyRingFile')}")
-	}
-}
-
 afterEvaluate {
 	signing {
 		if(System.getenv('SIGN_ARMORED_KEY')) {

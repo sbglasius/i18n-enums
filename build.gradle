@@ -23,6 +23,8 @@ plugins {
     id 'io.github.gradle-nexus.publish-plugin' version "${gradlePublishPlugin}"
 }
 
+version project.projectVersion
+
 repositories {
     mavenLocal()
     mavenCentral()
@@ -35,6 +37,9 @@ ext {
 }
 
 subprojects {
+
+    version rootProject.version
+
     ext {
         isBuildSnapshot = version.toString().endsWith("-SNAPSHOT")
         isReleaseVersion = !isBuildSnapshot
@@ -68,7 +73,7 @@ subprojects {
     }
 }
 
-if (project.hasProperty('release')) {
+if (project.isReleaseVersion) {
     nexusPublishing {
         repositories {
             sonatype {
