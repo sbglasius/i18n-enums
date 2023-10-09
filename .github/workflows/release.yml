@@ -42,8 +42,8 @@ jobs:
             SIGN_ARMORED_KEY: ${{ secrets.SIGN_ARMORED_KEY }}
             SIGN_PASSWORD: ${{ secrets.SIGNING_PASSPHRASE }}
             RELEASE_VERSION: ${{ steps.get_version.outputs.version-without-v }}
-          run: |
-              arguments: -info -Prelease=true -Pversion="${RELEASE_VERSION}" :i18n-enums:publishToSonatype closeAndReleaseSonatypeStagingRepository
+          with:
+            arguments: -info -Prelease=true -Pversion="${RELEASE_VERSION}" :i18n-enums:publishToSonatype closeAndReleaseSonatypeStagingRepository
       -   name: Bump patch version by one
           uses: flatherskevin/semver-action@v1
           id: bump_semver
