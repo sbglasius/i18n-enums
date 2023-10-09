@@ -10,29 +10,31 @@ jobs:
       GIT_USER_EMAIL: soeren@glasius.dk
     steps:
       -   name: Checkout repository
-          uses: actions/checkout@v2
+          uses: actions/checkout@v4
           with:
             token: ${{ secrets.GITHUB_TOKEN }}
-      -   name: Cache Gradle
-          id: cache-gradle
-          uses: actions/cache@v2
-          with:
-            path: ./gradle/
-            key: ${{ runner.os }}-gradle
-      -   uses: gradle/wrapper-validation-action@v1
+#      -   name: Cache Gradle
+#          id: cache-gradle
+#          uses: actions/cache@v3
+#          with:
+#            path: ./gradle/
+#            key: ${{ runner.os }}-gradle
+#      -   uses: gradle/wrapper-validation-action@v1
       -   name: Set up JDK
-          uses: actions/setup-java@v1
+          uses: actions/setup-java@v3
           with:
             java-version: '11'
             distribution: 'zulu'
       -   name: Get latest release version number
           id: get_version
-          uses: battila7/get-version-action@v2
+          uses: dhkatz/get-version-action@v3
       -   name: Run pre-release
           uses: micronaut-projects/github-actions/pre-release@master
           with:
             token: ${{ secrets.GITHUB_TOKEN }}
       -   name: Publish to Sonatype OSSRH
+          id: publish
+          uses: gradle/gradle-build-action@v2
           env:
             SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
             SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
@@ -41,10 +43,9 @@ jobs:
             SIGN_PASSWORD: ${{ secrets.SIGNING_PASSPHRASE }}
             RELEASE_VERSION: ${{ steps.get_version.outputs.version-without-v }}
           run: |
-            echo "Publishing Artifacts for $RELEASE_VERSION"
-            (set -x; ./gradlew -info -Prelease=true -Pversion="${RELEASE_VERSION}" :i18n-enums:publishToSonatype closeAndReleaseSonatypeStagingRepository --no-daemon)
+              arguments: -info -Prelease=true -Pversion="${RELEASE_VERSION}" :i18n-enums:publishToSonatype closeAndReleaseSonatypeStagingRepository
       -   name: Bump patch version by one
-          uses: actions-ecosystem/action-bump-semver@v1
+          uses: flatherskevin/semver-action@v1
           id: bump_semver
           with:
             current_version: ${{steps.get_version.outputs.version-without-v }}
