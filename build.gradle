@@ -1,51 +1,19 @@
-import io.github.gradlenexus.publishplugin.InitializeNexusStagingRepository
-
-buildscript {
-    ext {
-        grailsVersion = project.grailsVersion
-    }
-    repositories {
-        mavenLocal()
-        mavenCentral()
-        maven { url "https://repo.grails.org/grails/core" }
-        maven { url "https://plugins.gradle.org/m2/" }
-    }
-    dependencies {
-        classpath "org.grails:grails-gradle-plugin:$grailsGradlePluginVersion"
-        classpath "org.grails:grails-docs:${project.ext.properties.grailsDocsVersion ?: grailsVersion}"
-        classpath 'io.github.groovylang.groovydoc:groovydoc-gradle-plugin:1.0.1'
-        classpath "io.github.gradle-nexus:publish-plugin:$gradlePublishPlugin"
-    }
-}
-
 plugins {
-    id "com.adarshr.test-logger" version "2.0.0"
+    id "com.adarshr.test-logger" version "4.0.0"
     id 'io.github.gradle-nexus.publish-plugin' version "${gradlePublishPlugin}"
+    id "application"
+    id "signing"
+    id "maven-publish"
 }
 
-version project.projectVersion
+allprojects {
 
-repositories {
-    mavenLocal()
-    mavenCentral()
-    maven { url "https://repo.grails.org/grails/core" }
-}
-
-ext {
-    isBuildSnapshot = version.toString().endsWith("-SNAPSHOT")
-    isReleaseVersion = !isBuildSnapshot
-}
-
-subprojects {
-
-    version rootProject.version
+    group "dk.glasius"
 
     ext {
         isBuildSnapshot = version.toString().endsWith("-SNAPSHOT")
         isReleaseVersion = !isBuildSnapshot
     }
-
-    apply plugin: 'groovy'
 
     repositories {
         mavenLocal()
@@ -56,10 +24,8 @@ subprojects {
     java {
         withSourcesJar()
         withJavadocJar()
+        sourceCompatibility = JavaVersion.toVersion("11")
     }
-
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
 
     tasks.withType(Test).configureEach {
         useJUnitPlatform()
@@ -91,6 +57,8 @@ if (project.isReleaseVersion) {
 }
 
 //do not generate extra load on Nexus with new staging repository if signing fails or if not a release version
+import io.github.gradlenexus.publishplugin.InitializeNexusStagingRepository
+
 tasks.withType(InitializeNexusStagingRepository).configureEach {
     onlyIf { isReleaseVersion }
     shouldRunAfter(tasks.withType(Sign))
