@@ -36,7 +36,7 @@ jobs:
             -   name: Build asciidocs
                 run: ./gradlew :docs:asciidoctor
             -   uses: actions/configure-pages@v4
-            -   uses: actions/upload-pages-artifact@v2
+            -   uses: actions/artifact@v4
                 with:
                     path: 'docs/build/docs'
             -   uses: actions/deploy-pages@v4
