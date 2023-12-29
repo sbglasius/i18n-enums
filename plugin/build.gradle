@@ -1,40 +1,21 @@
-buildscript {
-	repositories {
-		mavenLocal()
-		mavenCentral()
-		maven { url "https://repo.grails.org/grails/core" }
-	}
-	dependencies {
-		classpath "org.grails:grails-gradle-plugin:$grailsGradlePluginVersion"
-	}
+plugins {
+	id "org.grails.grails-plugin" version "${grailsGradlePluginVersion}"
 }
-
-group "dk.glasius"
-
-apply plugin: "org.grails.grails-plugin"
-apply plugin: "signing"
-apply plugin: "maven-publish"
-
 dependencies {
-	developmentOnly("org.springframework.boot:spring-boot-devtools")
-	compileOnly "io.micronaut:micronaut-inject-groovy"
-	console "org.grails:grails-console"
 	implementation "org.springframework.boot:spring-boot-starter-logging"
 	implementation "org.springframework.boot:spring-boot-starter-validation"
 	implementation "org.springframework.boot:spring-boot-autoconfigure"
 	implementation "org.grails:grails-core"
-	profile "org.grails.profiles:plugin"
-	testImplementation "io.micronaut:micronaut-inject-groovy"
 	testImplementation "org.grails:grails-web-testing-support"
 }
 
-bootRun {
-	jvmArgs('-Dspring.output.ansi.enabled=always')
-	sourceResources sourceSets.main
+application {
+	mainClass.set("g611.plugin.Application")
 }
 
-// Enable if you wish to package this plugin as a standalone application
-bootJar.enabled = false
+java {
+	sourceCompatibility = JavaVersion.toVersion("11")
+}
 
 //this makes the groovy docs much more readable by shorting packages and providing links
 groovydoc {
