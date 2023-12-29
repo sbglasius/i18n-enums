@@ -13,13 +13,6 @@ jobs:
           uses: actions/checkout@v4
           with:
             token: ${{ secrets.GITHUB_TOKEN }}
-#      -   name: Cache Gradle
-#          id: cache-gradle
-#          uses: actions/cache@v3
-#          with:
-#            path: ./gradle/
-#            key: ${{ runner.os }}-gradle
-#      -   uses: gradle/wrapper-validation-action@v1
       -   name: Set up JDK
           uses: actions/setup-java@v3
           with:
@@ -46,13 +39,13 @@ jobs:
             arguments: -info -Prelease=true :i18n-enums:publishToSonatype closeAndReleaseSonatypeStagingRepository
       -   name: Bump patch version by one
           uses: flatherskevin/semver-action@v1
-          id: bump_semver
+          id: version
           with:
-            current_version: ${{steps.get_version.outputs.version-without-v }}
-            level: patch
+            incrementLevel: patch
+            source: tags
       -   name: Set version in gradle.properties
           env:
-            NEXT_VERSION: ${{ steps.bump_semver.outputs.new_version }}
+            NEXT_VERSION: ${{ steps.version.outputs.nextVersion }}
           run: |
             echo "Preparing next snapshot"
             ./gradlew snapshotVersion -Pversion="${NEXT_VERSION}"
