@@ -6,7 +6,12 @@ plugins {
     id "maven-publish"
 }
 
-allprojects {
+ext {
+    isBuildSnapshot = version.toString().endsWith("-SNAPSHOT")
+    isReleaseVersion = !isBuildSnapshot
+}
+
+subprojects {
 
     group "dk.glasius"
 
@@ -14,7 +19,6 @@ allprojects {
         isBuildSnapshot = version.toString().endsWith("-SNAPSHOT")
         isReleaseVersion = !isBuildSnapshot
     }
-
     repositories {
         mavenLocal()
         mavenCentral()
@@ -39,19 +43,17 @@ allprojects {
     }
 }
 
-if (project.isReleaseVersion) {
-    nexusPublishing {
-        repositories {
-            sonatype {
-                def ossUser = System.getenv("SONATYPE_USERNAME") ?: project.hasProperty("sonatypeOssUsername") ? project.sonatypeOssUsername : ''
-                def ossPass = System.getenv("SONATYPE_PASSWORD") ?: project.hasProperty("sonatypeOssPassword") ? project.sonatypeOssPassword : ''
-                def ossStagingProfileId = System.getenv("SONATYPE_STAGING_PROFILE_ID") ?: project.hasProperty("sonatypeOssStagingProfileId") ? project.sonatypeOssStagingProfileId : ''
-                nexusUrl = uri("https://oss.sonatype.org/service/local/")
-                snapshotRepositoryUrl = uri("https://oss.sonatype.org/content/repositories/snapshots/")
-                username = ossUser
-                password = ossPass
-                stagingProfileId = ossStagingProfileId
-            }
+nexusPublishing {
+    repositories {
+        sonatype {
+            def ossUser = System.getenv("SONATYPE_USERNAME") ?: project.hasProperty("sonatypeOssUsername") ? project.sonatypeOssUsername : ''
+            def ossPass = System.getenv("SONATYPE_PASSWORD") ?: project.hasProperty("sonatypeOssPassword") ? project.sonatypeOssPassword : ''
+            def ossStagingProfileId = System.getenv("SONATYPE_STAGING_PROFILE_ID") ?: project.hasProperty("sonatypeOssStagingProfileId") ? project.sonatypeOssStagingProfileId : ''
+            nexusUrl = uri("https://oss.sonatype.org/service/local/")
+            snapshotRepositoryUrl = uri("https://oss.sonatype.org/content/repositories/snapshots/")
+            username = ossUser
+            password = ossPass
+            stagingProfileId = ossStagingProfileId
         }
     }
 }
@@ -60,7 +62,7 @@ if (project.isReleaseVersion) {
 import io.github.gradlenexus.publishplugin.InitializeNexusStagingRepository
 
 tasks.withType(InitializeNexusStagingRepository).configureEach {
-    onlyIf { isReleaseVersion }
+    onlyIf { project.isReleaseVersion }
     shouldRunAfter(tasks.withType(Sign))
 }
 

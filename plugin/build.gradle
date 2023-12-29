@@ -1,5 +1,6 @@
 plugins {
 	id "org.grails.grails-plugin" version "${grailsGradlePluginVersion}"
+	id 'maven-publish'
 }
 dependencies {
 	implementation "org.springframework.boot:spring-boot-starter-logging"
@@ -28,12 +29,12 @@ groovydoc {
 	link('http://gorm.grails.org/latest/hibernate/api/',  'grails.gorm', 'grails.orm', 'org.grails.datastore', 'org.grails.orm')
 }
 
+
 publishing {
 	publications {
 		maven(MavenPublication) {
 			artifactId = 'i18n-enums'
 			groupId = 'dk.glasius'
-			version = project.version
 
 			from components.java
 

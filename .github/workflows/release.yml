@@ -32,7 +32,7 @@ jobs:
                     SIGN_PASSWORD: ${{ secrets.SIGNING_PASSPHRASE }}
                     RELEASE_VERSION: ${{ steps.get_version.outputs.version-without-v }}
                 with:
-                    arguments: -info -Prelease=true :i18n-enums:publishToSonatype closeAndReleaseSonatypeStagingRepository
+                    arguments: -Pversion=${RELEASE_VERSION} publishToSonatype closeAndReleaseSonatypeStagingRepository
             -   name: Bump patch version by one
                 uses: flatherskevin/semver-action@v1
                 id: version
