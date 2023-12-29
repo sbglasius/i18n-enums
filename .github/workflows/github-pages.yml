@@ -32,9 +32,13 @@ jobs:
                 with:
                     distribution: temurin
                     java-version: 11
+            -   uses: dhkatz/get-version-action@v3.0.0
+                id: get_version
             -   uses: gradle/gradle-build-action@v2
-            -   name: Build asciidocs
-                run: ./gradlew :docs:asciidoctor
+                env:
+                    RELEASE_VERSION: ${{ steps.get_version.outputs.version-without-v }}
+                with:
+                    arguments: -Pversion=${RELEASE_VERSION} :docs:asciidoctor
             -   uses: actions/configure-pages@v4
             -   uses: actions/upload-pages-artifact@v3
                 with:
