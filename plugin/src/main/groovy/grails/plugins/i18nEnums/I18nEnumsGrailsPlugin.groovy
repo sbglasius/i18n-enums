@@ -3,7 +3,7 @@ package grails.plugins.i18nEnums
 import grails.plugins.Plugin
 
 class I18nEnumsGrailsPlugin extends Plugin {
-    def grailsVersion = "5.0.0 > *"
+    def grailsVersion = "7.0.0 > *"
 
     def title = "I18nEnums Grails Plugin"
     def description = 'Adds an enumeration usable on Enums to easy add and implement the MessageSourceResolvable interface'
